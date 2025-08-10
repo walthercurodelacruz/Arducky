@@ -4,7 +4,7 @@
 **Plataforma:** GNU/Linux (Debian/Ubuntu, Fedora, Arch)  
 **Dispositivos:** Arduino UNO R3 (ATmega16U2) y compatibles (ATmega8U2)
 
-Este proyecto proporciona un **script Bash interactivo** (`rducky.sh`) que automatiza por completo el ciclo de trabajo DFU del microcontrolador USB (16U2/8U2) en placas Arduino UNO R3 y derivadas:
+Este proyecto proporciona un **script Bash interactivo** (`Arducky.sh`) que automatiza por completo el ciclo de trabajo DFU del microcontrolador USB (16U2/8U2) en placas Arduino UNO R3 y derivadas:
 
 - Instalación de **dfu-programmer** (desde repositorios o compilación automática si no existe).
 - Detección/espera del **modo DFU**.
@@ -68,9 +68,10 @@ sudo pacman -Sy --noconfirm usbutils
 Clona el repositorio y prepara el script:
 
 ```bash
-git clone https://github.com/<tu-usuario>/<tu-repo>.git
-cd <tu-repo>
-chmod +x rducky.sh
+git clone https://github.com/walthercurodelacruz/Arducky.git
+cd Arducky
+chmod +x Arducky.sh
+./Arducky.sh
 ```
 
 ---
@@ -87,7 +88,7 @@ Coloca junto al script **dos** archivos `.hex` **con exactamente estos nombres**
 ## Uso
 
 ```bash
-./rducky.sh
+./Arducky.sh
 ```
 
 - **0) Configuración** — Cambia timeout DFU, chip forzado (`auto|atmega16u2|atmega8u2`), verbose.  
