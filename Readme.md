@@ -20,26 +20,6 @@ Este proyecto proporciona un **script Bash interactivo** (`Arducky.sh`) que auto
 
 ---
 
-## Funciones
-
-- Opción 1: instala `dfu-programmer` si no existe.  
-- Opción 2: guía para entrar a **DFU** y espera hasta detectarlo.  
-- Opción 4: flashea **ORIGINAL** (USB-Serial).  
-- Opción 5: flashea **RUBBER DUCKY** (HID teclado).  
-- Opción 6: diagnóstico del estado con `lsusb`.
-
----
-
-## Características
-
-- **Interfaz TUI minimalista:** menús claros y banner con autoría.
-- **Multidistro:** `apt`, `dnf/dnf5`, `pacman`, o compilación desde fuente.
-- **Configuración persistente:** archivo `.rducky.env` (timeout DFU, chip forzado, verbose, autor).
-- **Erase robusto:** acepta `rc=5` y reintentos con `--force` cuando aplica.
-- **Detección inteligente de estado:** mapea patrones `lsusb` para DFU/HID/Serial.
-- **Mensajería clara:** estados `ok`, `warn`, `fail` con colores y pausas para seguimiento.
-
----
 
 ## Requisitos
 
@@ -93,7 +73,7 @@ Coloca junto al script **dos** archivos `.hex` **con exactamente estos nombres**
 
 - **0) Configuración** — Cambia timeout DFU, chip forzado (`auto|atmega16u2|atmega8u2`), verbose.  
 - **1) Instalar dfu-programmer** — Desde gestor o compilar fuente.  
-- **2) Activar/esperar modo DFU** — Instrucciones para puente RESET↔GND.  
+- **2) Activar modo DFU** — Puentea los pines RESET↔GND por menos de un segundo.
 - **3) Limpiar flash** — `erase` tolerante a `rc=5`.  
 - **4) Instalar ORIGINAL** — Flasheo con protección de bootloader.  
 - **5) Instalar RUBBER DUCKY** — Flasheo HID teclado.  
@@ -101,23 +81,7 @@ Coloca junto al script **dos** archivos `.hex` **con exactamente estos nombres**
 
 ---
 
-## Menú y flujo de trabajo
-
-1. Instalar herramientas (1).  
-2. Entrar en DFU (2).  
-3. Flashear ORIGINAL o RUBBER DUCKY (4 o 5).  
-4. Verificar estado (6).
-
----
-
-## Diagnóstico de puertos (lsusb)
-
-- **RUBBER**: HID teclado.  
-- **DFU**: VID/PID Atmel (03eb:****).  
-- **SERIAL**: Arduino VID 2341/2a03 u otros USB-Serial.  
-- **NONE**: no encontrado.
-
----
+![alt text](Puenteo_Modo_DFU.png)
 
 ## Solución de problemas
 
@@ -129,20 +93,10 @@ Coloca junto al script **dos** archivos `.hex` **con exactamente estos nombres**
 
 ---
 
-## Notas técnicas
-
-- Modo DFU controlado con `dfu-programmer <mcu> <cmd>`.  
-- `erase` acepta `rc=5` y continúa.  
-- Protege bootloader en flasheo ORIGINAL.  
-- Config persistente en `.rducky.env`.  
-- Verbosidad (`VERBOSE=1`) imprime estado durante la espera DFU.
-
----
-
 ## Compatibilidad probada
 
 - Debian/Ubuntu — apt  
-- Fedora 41/42 — dnf/dnf5  
+- Fedora 41/42/43/44 — dnf/dnf5  
 - Arch Linux — pacman
 
 ---
@@ -197,4 +151,3 @@ sudo dfu-programmer atmega16u2 reset
 ```
 
 ---
-
